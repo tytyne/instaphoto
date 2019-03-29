@@ -170,3 +170,31 @@ def upload_profile(request):
 
 
     return render(request,'upload_profile.html',{"title":title,"current_user":current_user,"form":form})
+
+@login_required(login_url='/accounts/login/')    
+def add_comment(request, image_id):
+ 
+    form = CommentForm(request.POST)
+    image = get_object_or_404(image, id=image_id)
+ 
+    if form.is_valid():
+        comment = Comment()
+        comment.path = []
+        comment.image_id = image
+        comment.user_id = auth.get_user(request)
+        comment.content = form.cleaned_data['comment_area']
+        comment.save()
+ 
+        # Django does not allow to see the comments on the ID, we do not save it,
+        # Although PostgreSQL has the tools in its arsenal, but it is not going to
+        # work with raw SQL queries, so form the path after the first save
+        # And resave a comment
+        try:
+            comment.path.extend(Comment.objects.get(id=form.cleaned_data['parent_comment']).path)
+            comment.path.append(comment.id)
+        except ObjectDoesNotExist:
+            comment.path.append(comment.id)
+ 
+        comment.save()
+ 
+    return redirect(image.get_absolute_url())    

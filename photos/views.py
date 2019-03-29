@@ -121,10 +121,37 @@ def photo_image(request):
         print(form.errors)
         if form.is_valid():
             image = form.save(commit=False)
-            image.editor = current_user
+            image.user = current_user
             image.save()
         return redirect('photosToday')
 
     else:
         form = PhotoImageForm()
-    return render(request, 'photo_image.html', {"form": form})    
+    return render(request, 'photo_image.html', {"form": form})   
+@login_required(login_url='/accounts/login/')
+def upload_profile(request):
+    current_user = request.user 
+    title = 'Upload Profile'
+    try:
+        requested_profile = Profile.objects.get(user_id = current_user.id)
+        if request.method == 'POST':
+            form = ProfileUploadForm(request.POST,request.FILES)
+
+            if form.is_valid():
+                requested_profile.profile_pic = form.cleaned_data['profile_pic']
+                requested_profile.bio = form.cleaned_data['bio']
+                requested_profile.username = form.cleaned_data['username']
+                requested_profile.save_profile()
+                return redirect( profile )
+        else:
+            form = ProfileUploadForm()
+    except:
+        if request.method == 'POST':
+            form = ProfileUploadForm(request.POST,request.FILES)
+
+            if form.is_valid():
+                new_profile = Profile(profile_pic = form.cleaned_data['profile_pic'],bio = form.cleaned_data['bio'],username = form.cleaned_data['username'])
+                new_profile.save_profile()
+                return redirect( profile )
+        else:
+            form = ProfileUploadForm() 

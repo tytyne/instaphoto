@@ -60,7 +60,7 @@ def photos_today(request):
     date = dt.date.today()
     form = PhotosLetterForm()
     photos=Image.todays_photos()
-    print(photos)
+   
     if request.method == 'POST':
         form = PhotosLetterForm(request.POST)
         if form.is_valid():

@@ -1,0 +1,41 @@
+ {%extends 'all-photos/base.html'%} {% load bootstrap3 %}{% block content %} {{ block.super}}
+
+<div class="container">
+
+    {% for photos_item in OK %}
+
+    <div class="row">
+
+
+        <!--Display photos image images  -->
+        {% if photos_item.image_image %}
+        <div class="col-md-4">
+            <h2 class="text-center"> {{ photos_item.title }} </h2>
+            <img src="{{photos_item.image_image.url}}" class="img-responsive" alt="Image">
+        </div>
+        {% else %}
+        <div class="col-md-4">
+            No image
+        </div>
+        {% endif %}
+    </div>
+
+    {% empty %}
+    <div class="row">
+        <h2 class="text-center">There No photos Items</h2>
+    </div>
+    {% endfor %}
+
+</div>
+
+<!-- Looping through photos end   -->
+<div class="container-fluid">
+
+    <!-- <form action="{%url 'photosToday'%}" method="post">
+        {%csrf_token%} {% bootstrap_form letterForm layout='inline' %}
+        <input type="submit" value="Subscribe">
+    </form> -->
+</div>
+
+
+{% endblock %}

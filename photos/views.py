@@ -3,9 +3,9 @@
 from django.contrib.auth.decorators import login_required
 import datetime as dt
 from django.shortcuts import render
-from .models import Image
+from .models import Image,Profile
 from django.http import HttpResponse,Http404,HttpResponseRedirect
-from . forms import PhotosLetterForm,PhotoImageForm
+from . forms import PhotosLetterForm,PhotoImageForm,ProfileUploadForm
 from .models import PhotosLetterRecipients
 from .email import send_welcome_email
 from django.shortcuts import redirect
@@ -134,10 +134,11 @@ def profile(request):
     current_user = request.user
     profile = Profile.objects.all()
     prof =None
-    for image in profile:
-        image=image.profile_pic
-        print(image)
-    return render(request, 'profile.html', {"current_user": current_user,'image':image})   
+    images=None
+    for images in profile:
+        images=image.profile_pic
+       
+    return render(request, 'profile.html', {"current_user": current_user,'image':images})   
 
 @login_required(login_url='/accounts/login/')
 def upload_profile(request):

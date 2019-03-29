@@ -7,4 +7,9 @@ class PhotosLetterForm(forms.Form):
 class PhotoImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        exclude = ['editor', 'pub_date', 'tags']
+        exclude = ['user', 'pub_date', 'tags']
+class ProfileUploadForm(forms.ModelForm):
+	class Meta:
+		model = Profile
+		
+		exclude = ['user']        

@@ -129,6 +129,7 @@ def photo_image(request):
         form = PhotoImageForm()
     return render(request, 'photo_image.html', {"form": form})   
 @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def upload_profile(request):
     current_user = request.user 
     title = 'Upload Profile'
@@ -154,4 +155,7 @@ def upload_profile(request):
                 new_profile.save_profile()
                 return redirect( profile )
         else:
-            form = ProfileUploadForm() 
+            form = ProfileUploadForm()
+
+
+    return render(request,'upload_profile.html',{"title":title,"current_user":current_user,"form":form})

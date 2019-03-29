@@ -1,6 +1,8 @@
 from django.db import models
 import datetime as dt
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import ArrayField
+
 
 # Create your models here.
    
@@ -103,7 +105,7 @@ class Comment(models.Model):
     image_id = models.ForeignKey(Image)
     user_id = models.ForeignKey(User)
     content = models.TextField('Comment')
-    pub_date = models.DateTimeField('Date of comment', default=timezone.now)
+    pub_date = models.DateTimeField('Date of comment')
  
     def __str__(self):
         return self.content[0:200]

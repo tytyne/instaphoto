@@ -198,3 +198,4 @@ def add_comment(request, image_id):
         comment.save()
  
     return redirect(image.get_absolute_url())    
+    return render(request,'new-comment.html',{"image":image,"form":form})

@@ -12,6 +12,7 @@ urlpatterns=[
     url(r'^photo/image$', views.photo_image, name='photo_image'),   
     url(r'^upload/profile', views.upload_profile, name='upload_profile'),
     url(r'^profile/', views.profile, name='profile'),
+    url(r'^comment/(?P<article_id>[0-9]+)/$', views.add_comment, name='add_comment'),
  
 ]
 if settings.DEBUG:

@@ -128,7 +128,17 @@ def photo_image(request):
     else:
         form = PhotoImageForm()
     return render(request, 'photo_image.html', {"form": form})   
+
 @login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.all()
+    prof =None
+    for image in profile:
+        image=image.profile_pic
+        print(image)
+    return render(request, 'profile.html', {"current_user": current_user,'image':image})   
+
 @login_required(login_url='/accounts/login/')
 def upload_profile(request):
     current_user = request.user 
@@ -159,12 +169,3 @@ def upload_profile(request):
 
 
     return render(request,'upload_profile.html',{"title":title,"current_user":current_user,"form":form})
-@login_required(login_url='/accounts/login/')
-def profile(request):
-    current_user = request.user
-    profile = Profile.objects.all()
-    prof =None
-    for image in profile:
-        image=image.profile_pic
-        print(image)
-    return render(request, 'profile.html', {"current_user": current_user,'image':image})    

@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
    
-class Editor(models.Model):
+class User(models.Model):
     first_name = models.CharField(max_length =30)
     last_name = models.CharField(max_length =30)
     email = models.EmailField()
@@ -95,3 +95,27 @@ class Profile(models.Model):
         return self.user.username
  
      
+class Comment(models.Model):
+    class Meta:
+        db_table = "comments"
+ 
+    path = ArrayField(models.IntegerField())
+    image_id = models.ForeignKey(Image)
+    user_id = models.ForeignKey(User)
+    content = models.TextField('Comment')
+    pub_date = models.DateTimeField('Date of comment', default=timezone.now)
+ 
+    def __str__(self):
+        return self.content[0:200]
+ 
+    def get_offset(self):
+        level = len(self.path) - 1
+        if level > 5:
+            level = 5
+        return level
+ 
+    def get_col(self):
+        level = len(self.path) - 1
+        if level > 5:
+            level = 5
+        return 12 - level

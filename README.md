@@ -1,25 +1,31 @@
-# gallery
-
+NSTA G
 
 INTRODUCTION
 
-gallery is a photo web application that shows different image category and displays all images taken by admin , March 18th, 2019.
-
+Instaphoto is a app where users can post pics, comment, like and follow their friends, March 22th, 2019.
 
 Description
 
-Gallery is a website application that shows different image. Users have to see photos and search the images based on the category and also user can copy the link of the images by right clicking on the prefered image.Admin uploads images,delete and update the images, is for the admin that have all right for the images seen by the users as he/she can delete/update and add pictures.
+This is a simple web clone of the instagram website. A user can create an account and sign into it. The site supports 
+uploading images, and following other users. users can view photos uploaded by other users in the home page of app.
 
 
 Specifications
 
-user can view different images and she/he hover the prefered image,it automatically be zoomed,and when he/she click on preferded image it automatically shows the name,description,date_posted,the location of the image with the zoomed images.
+Sign in to the application to start using.
+
+Upload my pictures to the application.
+
+See my profile with all my pictures.
+
+Follow other users and see their pictures on my timeline.
+
+Like a picture and leave a comment on it.
+
+Users can post pics, comment, like and follow their friends,
 
 
-when user type any category on a search button,it automatically display the image of that category.
-
-
-user can click on copy link button and copy the link of the image.
+User can search other users and be able to see their stories and comment or like the pictures.
 
 
 Set Up and Installations
@@ -36,16 +42,15 @@ python virtualenv
 
 django==1.11
 
-bootsrap
+bootsrap4
 
 Clone the Repo
 
-Run the following command on the terminal: git clone https://github.com/tytyne/gallery.git
+Run the following command on the terminal: git clone https://github.com/tytyne/instaphoto.git
 
-type cd gallery on terminal
+type cd instaphoto on terminal
 
-Known bugs
-
+Known bugs 
 No bugs but in case of encounter contact me.
 
 
@@ -55,7 +60,7 @@ Python 3.6
 
 HTML for the structure
 
-Bootstrap 3 for the design
+Bootstrap 4 for the design
 
 JavaScript
 
@@ -65,9 +70,7 @@ Postgresql for the database
 
 Support and contact details
 
-For any support please contact me on dusaflora@gmail.com
-
+For any support please contact me on dusaflora2@gmail.com 
 
 License
-
-MIT Copyright (c) 2019 Dusabeyeyezu florentine
+MIT Copyright (c) 2019 Dusabeyezu Florentine
